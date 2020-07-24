@@ -12,6 +12,72 @@ space [" "]
 	int i,counter_int=0;
 %}
 
+/* Keywords and wildcards def*/
+%%
+
+"function"								{ return declare_fn; }
+"void_main"								{ return main_fn; }
+
+"!" 									{ return count_fact; }
+"^" 									{ return count_power; }
+
+"$_int_$"{space}"function"           	{ return define_fn; }
+
+"$_float_$"								{ return float_var; }
+"$_int_$"								{ return int_var; }
+"$_char_$"								{ return char_var; }
+
+{digit}+								{ yylval = atoi(yytext); return number; }
+
+"{{"									{ return force_start; }
+"("										{ return paranth_op; }
+
+")"										{ return paranth_cl; }
+"}}"									{ return force_end; }
+
+"+"										{ return arith_add; }
+"*"										{ return arith_mul; }
+
+"/"										{ return arith_div; }
+"-"										{ return arith_min; }
+
+":"										{ return delim_colon; }
+"<br>"									{ return delim_break; }
+","										{ return delim_comma; }
+
+":="									{ return arith_equ;  }
+
+"<"										{ return check_lesserthan; }
+"<="									{ return check_lesserequals; }
+
+">"										{ return check_greaterthan; }
+">="									{ return check_greaterequals; }
+
+"="		    							{ return check_equals; }
+"++"									{ return count_increment; }
+
+"for"									{ return loop_for; }
+"while"  								{return loop_while; }
+
+"else"									{ return cond_else; }
+"if"									{ return cond_if; }
+
+"then"									{ return then; }
+
+"print" 							 	{return platform_print;}
+
+[a-z]									{ yylval = *yytext - 'a'; return variable;}
+
+[a-z]+[0-9]								{ yylval = *yytext - 'a'; return	id_n; }	
+		
+[a-z][a-z]+ 							{ for(i=0;i<yyleng;i++) buff_array[counter_int][i] = yytext[i]; counter_int++; return variable_t; }			
+
+[ \t\n]*								;
+
+"//"(.)*"\n" 							{ printf("Dummy comm line used to convey meaning\n");}
+
+%%
+
 //Main func
 int main()
 {
