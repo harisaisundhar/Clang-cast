@@ -21,11 +21,11 @@ space [" "]
 "!" 									{ return count_fact; }
 "^" 									{ return count_power; }
 
-"$_int_$"{space}"function"           	{ return define_fn; }
+"int"{space}"function"           	{ return define_fn; }
 
-"$_float_$"								{ return float_var; }
-"$_int_$"								{ return int_var; }
-"$_char_$"								{ return char_var; }
+"float"								{ return float_var; }
+"int"								{ return int_var; }
+"char"								{ return char_var; }
 
 {digit}+								{ yylval = atoi(yytext); return number; }
 
