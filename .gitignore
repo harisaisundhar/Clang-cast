@@ -1,5 +1,4 @@
 .DS_Store
-code.txt
 lex.yy.c
 parse.txt
 y.tab.c
