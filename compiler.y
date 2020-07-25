@@ -172,3 +172,7 @@ get_digp: get_num
 get_num: number { $$ = $1; } ;
 			
 %%
+
+yyerror(char *error){ printf( "\nError:%s\n", error); return 0; }
+
+int yywrap() { return 1; }
