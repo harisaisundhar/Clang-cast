@@ -1,0 +1,67 @@
+void_main ( )
+{
+
+int  a=50,z=1, abcd=21; 
+int  a,m;
+int  z=2;
+int i=1, x=0, p=2 ;
+
+print(z);
+x=p^3;
+
+
+ m=10-16/4+10+12*6;
+
+print(m);
+    y=10;
+
+
+    if (1):
+	    { 	
+		1 
+	    }
+
+
+	if (2 > 1):
+	    {
+	         if (1):
+	            { 5 }
+	         else:
+	            { 7 }
+	    }
+
+        else:
+         { 9 }
+
+	if (2 > 3):
+		{ 1 }
+	 else:
+	   {
+	         if (0):
+	            { 5 }
+	         else:
+	           { 7 }
+}
+for ( x = 0 , x <= 4, x ++ ) 
+{
+m;
+}
+while(i<5):
+{
+z;
+i++;
+}
+
+print(a);
+
+8!;
+	 
+function oddeven1 ( )
+
+int function oddeven1 ( )
+	    {
+           13;
+	    }
+
+}
+
