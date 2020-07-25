@@ -42,7 +42,7 @@ space [" "]
 "-"										{ return arith_min; }
 
 ":"										{ return delim_colon; }
-"<br>"									{ return delim_break; }
+";"									{ return delim_break; }
 ","										{ return delim_comma; }
 
 ":="									{ return arith_equ;  }
