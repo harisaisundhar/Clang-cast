@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Clang cast is a a C/C++ compiler using lex and yacc
+Clang cast is a a C/C++ compiler and debugger using lex and yacc
 
   - Checks if the code is c or c++
   - Imitates Clang compiler
