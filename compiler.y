@@ -85,23 +85,23 @@ get_varfollow: variable
 	printf("\nInterpret: value of the %c = %d\t\n",$1 + 'a', $3);
 } ;
 			
-get_while_cond: cond_if paranth_op get_validate paranth_cl delim_colon force_start get_validate force_end %prec check_if	
+get_while_cond: cond_if paranth_op get_validate paranth_cl force_start get_validate force_end %prec check_if	
 {			
 	if($3) { printf("\nDebugger: value of the condition -> (if): %d\n", $7); }
 	else { printf("\nDebugger: value of the condition -> (cond_if): 0\n"); }								
-} |cond_if paranth_op get_validate paranth_cl force_start cond_if paranth_op get_validate paranth_cl force_start get_validate force_end cond_else force_start get_validate force_end force_end cond_else delim_colon force_start get_validate force_end 
+} |cond_if paranth_op get_validate paranth_cl force_start cond_if paranth_op get_validate paranth_cl force_start get_validate force_end cond_else force_start get_validate force_end force_end cond_else force_start get_validate force_end 
 {
 	if($3) { 
 		if($9) { printf("\nDebugger: value of the condition -> (if if): %d\n", $13); }
-		else { printf("\nDebugger: value of the condition -> (if else): %d\n", $18); }
+		else { printf("\nDebugger: value of the condition -> (if else): %d\n", $17); }
 	}
-	else { printf("\nvalue of get_validate in only else: %d\n", $24); }
-} |cond_if paranth_op get_validate paranth_cl delim_colon force_start get_validate force_end cond_else delim_colon force_start cond_if paranth_op get_validate paranth_cl force_start get_validate force_end cond_else force_start get_validate force_end force_end
+	else { printf("\nvalue of get_validate in only else: %d\n", $21); }
+} |cond_if paranth_op get_validate paranth_cl force_start get_validate force_end cond_else force_start cond_if paranth_op get_validate paranth_cl force_start get_validate force_end cond_else force_start get_validate force_end force_end
 {
 	if($3) { printf("\nDebugger: value of the condition -> (only if): %d\n", $7); }
 	else {
 		if($14) { printf("\nDebugger: value of the condition -> (else if): %d\n", $18); }
-		else { printf("\nDebugger: value of the condition -> (else else): %d\n", $23); }
+		else { printf("\nDebugger: value of the condition -> (else else): %d\n", $21); }
 	}
 } | number count_fact 
 {  
