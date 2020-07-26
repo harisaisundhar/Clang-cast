@@ -21,7 +21,7 @@
 %nonassoc cond_else
 
 %left arith_add arith_min
-%left arith_mul arith_div
+%left arith_div arith_mul
 
 %left count_fact
 %left count_power
@@ -38,7 +38,7 @@ get_call_function: ;| define_fn id_n paranth_op paranth_cl force_start get_funcd
 
 get_params: | get_params get_value | get_params get_vardec | get_params get_while_cond | get_params get_udfunc ;
 
-get_udfunc: declare_fn id_n paranth_op paranth_cl  { printf("\nCall: Function defined by user\n"); } ;
+get_udfunc: declare_fn id_n paranth_op paranth_cl delim_break { printf("\nCall: Function defined by user\n"); } ;
 	
 get_vardec: get_vartyp get_vardef delim_break	{ printf("\nValid declaration\n"); } ;
 			
@@ -54,7 +54,7 @@ get_vardef: get_varfollow delim_comma get_vardef | get_varfollow ;
 			
 get_varfollow: variable	
 {
-	if(data_d[$1] == 1) { printf("\nAssign: %c -> re-initialized\n", $1+'a'); }
+	if(data_d[$1] == 1) { printf("\nError: %c -> re-initialized\n", $1+'a'); }
 	else { data_d[$1] = 1; }
 } | variable_t
 {																			
@@ -89,14 +89,14 @@ get_while_cond: cond_if paranth_op get_validate paranth_cl delim_colon force_sta
 {			
 	if($3) { printf("\nDebugger: value of the condition -> (if): %d\n", $7); }
 	else { printf("\nDebugger: value of the condition -> (cond_if): 0\n"); }								
-} |cond_if paranth_op get_validate paranth_cl delim_colon force_start cond_if paranth_op get_validate paranth_cl delim_colon force_start get_validate force_end cond_else delim_colon force_start get_validate force_end force_end cond_else delim_colon force_start get_validate force_end 
+} |cond_if paranth_op get_validate paranth_cl force_start cond_if paranth_op get_validate paranth_cl force_start get_validate force_end cond_else force_start get_validate force_end force_end cond_else delim_colon force_start get_validate force_end 
 {
 	if($3) { 
 		if($9) { printf("\nDebugger: value of the condition -> (if if): %d\n", $13); }
 		else { printf("\nDebugger: value of the condition -> (if else): %d\n", $18); }
 	}
 	else { printf("\nvalue of get_validate in only else: %d\n", $24); }
-} |cond_if paranth_op get_validate paranth_cl delim_colon force_start get_validate force_end cond_else delim_colon force_start cond_if paranth_op get_validate paranth_cl delim_colon force_start get_validate force_end cond_else delim_colon force_start get_validate force_end force_end
+} |cond_if paranth_op get_validate paranth_cl delim_colon force_start get_validate force_end cond_else delim_colon force_start cond_if paranth_op get_validate paranth_cl force_start get_validate force_end cond_else force_start get_validate force_end force_end
 {
 	if($3) { printf("\nDebugger: value of the condition -> (only if): %d\n", $7); }
 	else {
@@ -109,11 +109,11 @@ get_while_cond: cond_if paranth_op get_validate paranth_cl delim_colon force_sta
 	for( int m = $1; m > 0; m--) { fac=fac*m; }
 	$$ = fac;
 	printf("\nInterpret: factorial -> %d!\n", $$); 
-} | loop_for paranth_op variable arith_equ number delim_comma variable check_lesserequals number delim_comma variable count_increment paranth_cl force_start get_while_cond force_end
+} | loop_for paranth_op variable arith_equ number delim_break variable check_lesserequals number delim_break variable count_increment paranth_cl force_start get_while_cond force_end
 {
 	printf("\nCall:Loop Started :\n");
 	for( keys_d[$3]=$5; keys_d[$3] <= $9; keys_d[$3]++) { printf("data -> %d\n", $15); }
-} | loop_while paranth_op variable check_lesserthan number paranth_cl delim_colon force_start get_while_cond variable count_increment delim_break force_end    
+} | loop_while paranth_op variable check_lesserthan number paranth_cl force_start get_while_cond variable count_increment delim_break force_end    
 {
 	printf("\nCall:While loop Started :\n");
 	while(keys_d[$3] < $5){ printf("data -> %d\n", $9); keys_d[$3]++; }
