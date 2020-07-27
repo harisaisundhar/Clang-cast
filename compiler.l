@@ -21,19 +21,19 @@ space [" "]
 "!" 									{ return count_fact; }
 "^" 									{ return count_power; }
 
-"int"{space}"function"           	{ return define_fn; }
+"int"{space}"function"           		{ return define_fn; }
 
-"float"								{ return float_var; }
-"int"								{ return int_var; }
-"char"								{ return char_var; }
+"float"									{ return float_var; }
+"int"									{ return int_var; }
+"char"									{ return char_var; }
 
 {digit}+								{ yylval = atoi(yytext); return number; }
 
-"{"									{ return force_start; }
+"{"										{ return force_start; }
 "("										{ return paranth_op; }
 
 ")"										{ return paranth_cl; }
-"}"									{ return force_end; }
+"}"										{ return force_end; }
 
 "+"										{ return arith_add; }
 "*"										{ return arith_mul; }
@@ -42,10 +42,10 @@ space [" "]
 "-"										{ return arith_min; }
 
 ":"										{ return delim_colon; }
-";"									{ return delim_break; }
+";"										{ return delim_break; }
 ","										{ return delim_comma; }
 
-"="									{ return arith_equ;  }
+"="										{ return arith_equ;  }
 
 "<"										{ return check_lesserthan; }
 "<="									{ return check_lesserequals; }
@@ -53,7 +53,7 @@ space [" "]
 ">"										{ return check_greaterthan; }
 ">="									{ return check_greaterequals; }
 
-"=="		    							{ return check_equals; }
+"=="		    						{ return check_equals; }
 "++"									{ return count_increment; }
 
 "for"									{ return loop_for; }
