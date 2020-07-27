@@ -51,7 +51,22 @@ enum yytokenty{
   declare_fn = 295,
   define_fn = 296,
   id_n = 297,
-  check_if = 298
+  check_if = 298,
+  cout_op = 299,
+  output_op = 300,
+  cin_op = 301, 
+  input_op = 302,
+  class_dec = 303,
+  try_op = 304,
+  catch_op = 305,
+  throw_op = 306,
+  scope_res = 307,
+  template_op = 308,
+  private_spec = 310,
+  public_spec = 311,
+  protected_spec = 312,
+  T = 313,
+  return_op = 314
 };
 
 #endif

@@ -15,25 +15,43 @@ space [" "]
 /* Keywords and wildcards def*/
 %%
 
+
+"cout_op"  { return cout_op };
+"<<"    { return output_op };
+"cin"   { return cin_op };
+">>"	{ return input_op };
+"class" { return class_dec };
+"try"	{ return try_op };
+"catch"	{ return catch_op };
+"throw"	{ return throw_op };
+"::"	{ return scope_res };
+"template <typename T>" { return template_op };
+"private"	{ return private_spec };
+"public"	{ return public_spec };
+"protected"	{ return protected_spec };
+"T"		{ return T };
+"return"	{return return_op};
+
+
 "function"								{ return declare_fn; }
-"int_main"								{ return main_fn; }
+"void_main"								{ return main_fn; }
 
 "!" 									{ return count_fact; }
 "^" 									{ return count_power; }
 
-"int"{space}"function"           		{ return define_fn; }
+"int"{space}"function"           	{ return define_fn; }
 
-"float"									{ return float_var; }
-"int"									{ return int_var; }
-"char"									{ return char_var; }
+"float"								{ return float_var; }
+"int"								{ return int_var; }
+"char"								{ return char_var; }
 
 {digit}+								{ yylval = atoi(yytext); return number; }
 
-"{"										{ return force_start; }
+"{"									{ return force_start; }
 "("										{ return paranth_op; }
 
 ")"										{ return paranth_cl; }
-"}"										{ return force_end; }
+"}"									{ return force_end; }
 
 "+"										{ return arith_add; }
 "*"										{ return arith_mul; }
@@ -42,10 +60,10 @@ space [" "]
 "-"										{ return arith_min; }
 
 ":"										{ return delim_colon; }
-";"										{ return delim_break; }
+";"									{ return delim_break; }
 ","										{ return delim_comma; }
 
-"="										{ return arith_equ;  }
+"="									{ return arith_equ;  }
 
 "<"										{ return check_lesserthan; }
 "<="									{ return check_lesserequals; }
@@ -53,7 +71,7 @@ space [" "]
 ">"										{ return check_greaterthan; }
 ">="									{ return check_greaterequals; }
 
-"=="		    						{ return check_equals; }
+"=="		    							{ return check_equals; }
 "++"									{ return count_increment; }
 
 "for"									{ return loop_for; }
@@ -64,7 +82,7 @@ space [" "]
 
 "then"									{ return then; }
 
-"printf" 							 	{return platform_print;}
+"print" 							 	{return platform_print;}
 
 [a-z]									{ yylval = *yytext - 'a'; return variable;}
 
@@ -74,7 +92,7 @@ space [" "]
 
 [ \t\n]*								;
 
-"//"(.)*"\n" 							{ printf("\nDummy comm line used to convey meaning\n");}
+"//"(.)*"\n" 							{ printf("Dummy comm line used to convey meaning\n");}
 
 %%
 

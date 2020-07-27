@@ -1,5 +1,28 @@
 // The code to be parsed
 
+class sum {
+	
+	private T sum ;
+	sum ( ) {
+		sum = 0 ;
+	}
+	public T add ( T var1 , T var2 ) ;
+
+}
+
+template <typename T>
+T Sum :: add ( T var1 , T var2 ) {
+	
+	try {
+		sum = var1 + var2 ;
+		throw sum ;
+	}
+	catch ( T sum ) {
+		cout << ExceptionHandling ;
+	}
+	return sum ;
+}
+
 int_main () {
 int x=50,y=1,dummy=21; 
 int x,a; x=2;

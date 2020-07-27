@@ -15,7 +15,7 @@
 %}
 
 //Token declartion
-%token main_fn int_var string_charp float_var char_var number variable variable_t delim_comma delim_break loop_for loop_while delim_colon switch_d switch_c then cond_if cond_else SWITCH paranth_op paranth_cl force_start force_end platform_print arith_add arith_min arith_mul arith_div arith_equ check_greaterthan check_lesserthan check_greaterequals check_lesserequals check_equals count_increment count_fact count_power declare_fn define_fn id_n
+%token main_fn int_var string_charp float_var char_var number variable variable_t delim_comma delim_break loop_for loop_while delim_colon switch_d switch_c then cond_if cond_else SWITCH paranth_op paranth_cl force_start force_end platform_print arith_add arith_min arith_mul arith_div arith_equ check_greaterthan check_lesserthan check_greaterequals check_lesserequals check_equals count_increment count_fact count_power declare_fn define_fn id_n cout_op output_op cin_op input_op class_dec try_op catch_op throw_op scope_res template_op private_spec public_spec protected_spec T return_op
 
 %nonassoc check_if
 %nonassoc cond_else
@@ -32,7 +32,35 @@
 // Rules are defined here
 %%
 
-get_start_run: main_fn paranth_op paranth_cl force_start get_params get_call_function force_end  { printf("\nSuccess: Compilation\n"); } ;
+get_start_run: class_dec variable_t force_start class_deccontent force_end funct main_fn paranth_op paranth_cl force_start get_params get_call_function force_end  { printf("\nSuccess: Compilation\n"); } ;
+
+
+class_deccontent: | class_deccontent get_vardec
+				| class_deccontent class_decfunction
+				| class_deccontent constructor	;
+
+funct 		: template_op get_vartyp variable_t scope_res variable_t paranth_op parameters paranth_cl force_start funccontent force_end { printf("template_op is found, class_dec funtion is recognised through scope_res resolution operator"); } ; 
+
+
+funccontent	: try_op force_start get_params throw_op variable_t delim_break force_end catch_op paranth_op parameters paranth_cl force_start cout_op output_op variable_t force_end return_op variable_t delim_break
+{	printf("Exception is caught"); } ;
+
+class_decfunction   : specifiers get_vartyp variable_t paranth_op parameters paranth_cl delim_break { printf("\nUser defined class_dec function  is declared");  printf("\n"); } ;
+
+
+specifiers 	:  | private_spec | public_spec | protected_spec
+
+
+parameters 		: 	| get_vartyp variable_t 
+					| get_vartyp variable_t delim_comma get_vartyp variable_t ;
+
+
+constructor		: variable_t paranth_op paranth_cl force_start constructorcontents force_end { printf("class_dec Constructor is called"); printf("\n"); }  ;
+
+
+constructorcontents	: variable_t arith_equ number delim_break { printf("\nVariable is initialised inside the constructor. The value of %s is %d",$1,$3); printf("\n");} ;
+
+
 
 get_call_function: ;| define_fn id_n paranth_op paranth_cl force_start get_funcdata force_end  { printf("\nSuccess: End of function\n"); } ;
 
@@ -40,9 +68,9 @@ get_params: | get_params get_value | get_params get_vardec | get_params get_whil
 
 get_udfunc: declare_fn id_n paranth_op paranth_cl delim_break { printf("\nCall: Function defined by user\n"); } ;
 	
-get_vardec: get_vartyp get_vardef delim_break	{ printf("\nInterpret: Declaration valid\n"); } ;
+get_vardec: get_vartyp get_vardef delim_break	{ printf("\nValid declaration\n"); } ;
 			
-get_vartyp: int_var | float_var | char_var ;
+get_vartyp: T | int_var | float_var | char_var ;
 
 get_funcdata: number delim_break 
 {
@@ -108,7 +136,7 @@ get_while_cond: cond_if paranth_op get_validate paranth_cl force_start get_valid
 	int fac=1 ;
 	for( int m = $1; m > 0; m--) { fac=fac*m; }
 	$$ = fac;
-	printf("\nInterpret: factorial(!) -> %d\n", $$); 
+	printf("\nInterpret: factorial -> %d!\n", $$); 
 } | loop_for paranth_op variable arith_equ number delim_break variable check_lesserequals number delim_break variable count_increment paranth_cl force_start get_while_cond force_end
 {
 	printf("\nCall:Loop Started :\n");
