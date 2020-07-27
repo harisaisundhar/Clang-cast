@@ -40,7 +40,7 @@ get_params: | get_params get_value | get_params get_vardec | get_params get_whil
 
 get_udfunc: declare_fn id_n paranth_op paranth_cl delim_break { printf("\nCall: Function defined by user\n"); } ;
 	
-get_vardec: get_vartyp get_vardef delim_break	{ printf("\nValid declaration\n"); } ;
+get_vardec: get_vartyp get_vardef delim_break	{ printf("\nInterpret: Declaration valid\n"); } ;
 			
 get_vartyp: int_var | float_var | char_var ;
 

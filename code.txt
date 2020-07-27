@@ -1,67 +1,65 @@
-void_main ( )
-{
+// The code to be parsed
 
-int  a=50,z=1, abcd=21; 
-int  a,m;
-z=2;
-int i=1, x=0, p=2 ;
+int_main () {
+int x=50,y=1,dummy=21; 
+int x,a; x=2;
+int t=1, c=5, s=2;
+int p=2;
+char o;
 
-print(z);
-x=p^3;
+printf(x);
 
+x=p^10;
+k=8;
+y=9-8/2+1+6*5;
 
- m=10-16/4+10+12*6;
+printf(y);
 
-print(m);
-    y=10;
+y=10;
+if (y) { 100 }
 
+if (2 > 1) {
+	if (1) { 200 }
+	else { 210 }
+} else { 110 }
 
-    if (1)
-	    { 	
-		1 
-	    }
+if (2 > 3) { 999 }
 
-
-	if (2 > 1)
-	    {
-	         if (1)
-	            { 5 }
-	         else
-	            { 7 }
-	    }
-
-        else
-         { 9 }
-
-	if (2 > 3)
-		{ 1 }
-	 else
-	   {
-	         if (0)
-	            { 5 }
-	         else
-	           { 7 }
-}
-for ( x = 0 ; x <= 4; x ++ ) 
-{
-m;
-}
-while(i<5)
-{
-z;
-i++;
+else {
+	if (0) { 300 }
+	else { 310 }
 }
 
-print(a);
+if (y) { 999 }
 
-8!;
+for ( x = 0 ; x <= 4; x ++ ) {
+	m;
+}
+// m is not initialized so buffer value
+
+for ( x = 0 ; x <= 4; x ++ ) {
+	k;
+}
+
+while(i<3) {
+	k; i++;
+}
+
+printf(a);
+
+3!;
+
+//if (y) { "error as string" }
 	 
 function oddeven1 ( );
 
 int function oddeven1 ( )
-	    {
-           13;
-	    }
+	    { 200; }
+
+//int function oddeven1 ( )
+//	    { 199; }
+// Error as re declared
+
+
 
 }
-

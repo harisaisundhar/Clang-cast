@@ -16,7 +16,7 @@ space [" "]
 %%
 
 "function"								{ return declare_fn; }
-"void_main"								{ return main_fn; }
+"int_main"								{ return main_fn; }
 
 "!" 									{ return count_fact; }
 "^" 									{ return count_power; }
@@ -64,7 +64,7 @@ space [" "]
 
 "then"									{ return then; }
 
-"print" 							 	{return platform_print;}
+"printf" 							 	{return platform_print;}
 
 [a-z]									{ yylval = *yytext - 'a'; return variable;}
 
@@ -74,7 +74,7 @@ space [" "]
 
 [ \t\n]*								;
 
-"//"(.)*"\n" 							{ printf("Dummy comm line used to convey meaning\n");}
+"//"(.)*"\n" 							{ printf("\nDummy comm line used to convey meaning\n");}
 
 %%
 
