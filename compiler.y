@@ -136,7 +136,7 @@ get_while_cond: cond_if paranth_op get_validate paranth_cl force_start get_valid
 	int fac=1 ;
 	for( int m = $1; m > 0; m--) { fac=fac*m; }
 	$$ = fac;
-	printf("\nInterpret: factorial -> %d!\n", $$); 
+	printf("\nInterpret: factorial(!) -> %d\n", $$); 
 } | loop_for paranth_op variable arith_equ number delim_break variable check_lesserequals number delim_break variable count_increment paranth_cl force_start get_while_cond force_end
 {
 	printf("\nCall:Loop Started :\n");

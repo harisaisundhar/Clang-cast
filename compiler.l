@@ -34,7 +34,7 @@ space [" "]
 
 
 "function"								{ return declare_fn; }
-"void_main"								{ return main_fn; }
+"int_main"								{ return main_fn; }
 
 "!" 									{ return count_fact; }
 "^" 									{ return count_power; }
@@ -82,7 +82,7 @@ space [" "]
 
 "then"									{ return then; }
 
-"print" 							 	{return platform_print;}
+"printf" 							 	{return platform_print;}
 
 [a-z]									{ yylval = *yytext - 'a'; return variable;}
 
